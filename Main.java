@@ -1,6 +1,6 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
-class Main {
-{   
+class Main {  
    public static void main(String[] args) 
    {  
       final int QUARTS_IN_GALLON = 4;
@@ -9,7 +9,18 @@ class Main {
       int extraQuartsNeeded;
       Scanner input = new Scanner(System.in);
       System.out.print("Enter quarts needed >> ");
-      quartsNeeded = input.nextInt();
+      while(true){
+        try {
+	    	  quartsNeeded = input.nextInt();
+	      }
+	      catch(InputMismatchException ne) {
+	    	  System.out.println("Invalid entry - Enter numeric data"); 
+          input.nextLine();
+          continue;
+	      }
+     break;
+      }
+     
       gallonsNeeded = quartsNeeded / QUARTS_IN_GALLON;
       extraQuartsNeeded = quartsNeeded % QUARTS_IN_GALLON;
       System.out.println("A job that needs " + quartsNeeded +
